@@ -2,20 +2,28 @@
 Theme Name: Chromatix
 Author: Ryan
 */
+:root {
+    --blue: #003268;
+    --gray: #d4d4d4;
+    --yellow: #e7d47f;
+}
+* {
+    box-sizing: border-box;
+}
 body {
     font-family: 'Helvetica', Arial, serif;
     background: #363b3f;
 }
 .container {
     margin: 0 auto;
-    padding: 0 100px;
+    padding: 0;
     width: 100%;
     max-width: 1200px;
 
 }
 header {
     position: relative;
-    background-color: #003268;
+    background-color: var(--blue);
 }
 header > .container {
     display: flex;
@@ -35,7 +43,6 @@ header > .container {
 }
 nav {
     display: flex;
-    width: 100%;
     height: inherit;
 }
 
@@ -54,14 +61,14 @@ nav {
     padding: 0 20px;
 }
 
-.menu-wrapper > li a {
+.menu-wrapper > li > a {
     position: relative;
     align-self: center;
     color: #fff;
     font-weight: bold;
     text-decoration: none;
 }
-.menu-wrapper > li a:before {
+.menu-wrapper > li > a:before {
     visibility: hidden;
     content: '';
     position: absolute;
@@ -74,7 +81,7 @@ nav {
 
     transition: all 0.3s ease-in-out;
 }
-.menu-wrapper > li:hover a:before {
+.menu-wrapper > li:hover > a:before {
     visibility: visible;
     transform: scaleX(1);
 }
@@ -88,6 +95,7 @@ nav {
     margin: 0;
     width: 100%;
     background: #fff;
+    color: var(--blue);
     transition: all 0.3s ease-in-out;
 }
 .menu-wrapper > li:hover .mega-menu-wrapper {
@@ -95,39 +103,69 @@ nav {
     opacity: 1;
 
 }
-
+.mega-menu-wrapper h2 {
+    padding:30px 0 6px 0;
+    font-size: 1.20em;
+}
 .mega-menu-content {
     position: relative;
     padding: 60px 0;
+    border-top: 1px solid var(--gray);
 }
+
+
 .mega-menu-content ul {
     list-style: none;
     width: 100%;
+    padding: 0;
 
 }
+.mega-menu-content ul li {
+    margin-bottom: 20px;
 
+}
+.mega-menu-content a {
+    display: inline-block;
+
+    font-size: 24px;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--blue);
+    transition: color 0.1s ease-in-out;
+}
+.mega-menu-content a:hover {
+    color: var(--yellow);
+}
 .mega-menu-content .mega-menu-image {
     width: 100%;
     display: none;
 }
-.mega-menu-content > * {
-    border:1px solid red;
-}
 
+.mega-menu-content .mega-menu-image {
+
+}
+.mega-menu-content .mega-menu-image img {
+    opacity: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+
+}
 @media only screen and (min-width: 769px) {
-    .mega-menu-content   {
+    .mega-menu-content .container  {
         display: flex;
 
     }
     .mega-menu-content ul {
-        width: 66%;
+        width: 65%;
         columns: 2;
         -webkit-columns: 2;
         -moz-columns: 2;
     }
 
     .mega-menu-content .mega-menu-image {
-        width: 33%;
+        width: 35%;
         display: block;
     }
 }

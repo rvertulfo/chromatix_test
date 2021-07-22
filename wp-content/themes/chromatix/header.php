@@ -28,3 +28,5 @@
 
 
 	</header>
+	<div id="content" class="site-content ">
+			<main id="main" class="site-main container" role="main">

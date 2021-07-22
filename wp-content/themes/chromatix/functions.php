@@ -143,13 +143,7 @@ add_action("save_post", "parent_menu_meta_box_save_post");
 
 
 
-
 class Menu_Walker extends Walker_Nav_Menu {
-
-    function start_lvl( &$output, $depth = 0, $args = array() ) {
-
-        $output .= '<ul>' . "\n";
-    }
 
 
     function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
@@ -165,15 +159,17 @@ class Menu_Walker extends Walker_Nav_Menu {
 
         $the_query = new WP_Query( $args );
         if ($the_query->have_posts()) {
-            $output .= '<div class="mega-menu-wrapper"><div class="container"><h2>' . $item->post_title . '</h2><div class="mega-menu-content"><ul>';
+
+            $output .= '<div class="mega-menu-wrapper"><h2 class="container">' . $item->post_title . '</h2><div class="mega-menu-content"><div class="container"><ul>';
             $custom_posts = $the_query->posts;
             $default_image = NULL;
             foreach($custom_posts as $this_post) {
-                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $this_post->ID ), 'medium');
-                $default_image = (empty($default_image)) ? $image[0] : $default_image;
-                $output .= '<li><a href="" class="sub-menu-link" data-image="' . $image[0] . '">' . $this_post->post_title . '</a></li>';
+                $image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $this_post->ID ), 'medium');
+                $image_src = (!empty($image_data)) ? $image_data[0] : '';
+                $default_image = (empty($default_image)) ? $image_src : $default_image;
+                $output .= '<li><a href="" class="sub-menu-link" data-image="' . $image_src . '">' . $this_post->post_title . '</a></li>';
             }
-            $output .= '</ul><div class="mega-menu-image"><img src="' . $default_image . '"></div></div></div></div>';
+            $output .= '</ul><div class="mega-menu-image"><img src="' . $default_image . '" /></div></div></div></div>';
         }
 
 
@@ -182,10 +178,4 @@ class Menu_Walker extends Walker_Nav_Menu {
         $output .= "</li>\n";
     }
 
-}
-
-function readable_print_r($array) {
-    echo '<pre>';
-    print_r($array);
-    echo '</pre>';
 }
