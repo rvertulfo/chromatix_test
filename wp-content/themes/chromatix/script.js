@@ -25,5 +25,7 @@ $( document ).ready(function() {
 
 
 
+    }, function() {
+        $(".mega-menu-image img").stop().fadeTo(100, 0);
     });
 });

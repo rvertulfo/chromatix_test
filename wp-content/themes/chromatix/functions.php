@@ -4,7 +4,6 @@
  */
 $custom_post_types = array( 'car_brand', 'food');
 add_theme_support( 'post-thumbnails' );
-add_image_size( 'category-thumb', 300, 9999 ); //300 pixels wide (and unlimited height)
 
 function theme_setup() {
     if (!is_admin() && $GLOBALS['pagenow'] != 'wp-login.php') {
